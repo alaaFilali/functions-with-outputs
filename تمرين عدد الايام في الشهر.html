@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>تمرين عدد الايام في الشهر</title>
+</head>
+
+<body>
+    <div class="book-page">
+        <h1 class="book-title">تمرين عدد الايام في الشهر</h1>
+        <div class="content">
+            <p>
+                في درس اليوم سوف تجد حل التمرين من الدروس السابقة هو هل السنة
+                كبيسة او لا ؟
+            </p>
+            <pre><code>
+def is_leap(year):
+    if year % 4 == 0:
+        if year % 100 == 0:
+            if year % 400 == 0:
+                print("Leap year.")
+            else:
+                print("Not leap year.")
+        else:
+            print("Leap year.")
+    else:
+        print("Not leap year.")
+        </code></pre>
+            <p>
+                اولا سوف تقوم بتغيير الدالة
+                is_leap
+                بحيث في مكان طباعة السنة كبيسة او لا سوف ترجع قيمة
+                True
+                او
+                False
+                ثم سوف تقوم بكتابة دالة
+                days_in_month
+                التي سوف تأخذ العام والشهر كمدخلات
+            </p>
+<pre><code>
+days_in_month(year=2023, month=2)
+    </code></pre>
+    <p>
+        و سوف ترجع عدد الايام في الشهر مثلا: 
+    </p>
+<pre><code>28</code></pre>
+        </div>
+        <p>
+            ودالة 
+            days_in_month 
+            فيها قائمة بعدد الايام في كل شهر من جانفي الى ديسمبر للسنة الغير الكبيسة
+            والسنة الكبيسة لديها 
+            29
+            يوم في شهر فيفري
+        </p>
+        <pre><code>
+def days_in_month():
+  month_days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]  
+        </code></pre>
+        <p>
+            قم بسؤال المستخدم ان يدخل العام والشهر ثم مررها للدالة 
+            days_in_month
+            ثم خزن قيمة الارجاع في متغير 
+            days
+            ثم قم بطباعته هكذا: 
+        </p>
+        <pre><code>
+year = int(input("Enter a year: "))
+month = int(input("Enter a month: "))
+days = days_in_month(year, month)
+print(days)
+        </code></pre>
+        <p>
+            حظا موفقا في تمرين اليوم.
+        </p>
+        <p>
+            حل التمرين: 
+        </p>
+        <p>
+            اولا سوف نقوم بتغيير الدالة 
+            is_leap
+            حتى ترجع قيمة 
+            True
+            او 
+            False 
+            في مكان الطباعة هكذا: 
+        </p>
+        <pre><code>
+def is_leap(year):
+if year % 4 == 0:
+    if year % 100 == 0:
+        if year % 400 == 0:
+            return True
+        else:
+            return False
+    else:
+        return True
+else:
+    return False
+        </code></pre>
+        <p>
+            والان سوف نستعملها في دالة 
+            days_in_month
+            لمعرفة متى نرجع العدد الصحيح من الايام للشهر
+        </p>
+        <pre><code>
+def days_in_month(year, month):
+    month_days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]  
+    if is_leap(year) and month == 2:
+        return 29
+    return month_days[month - 1]
+        </code></pre>
+        <p>
+            بحيث اذا كانت السنة كبيسة والشهر هو فيفري سوف نرجع 
+            29
+            و في الحالات الاخرى سوف نرجع قيمة الشهر من القائمة 
+            month_days
+            لانها كلها متشابهة للسنه الكبيسة وغير الكبيسة
+        </p>
+        <p>
+            يمكنك ايضا جعل الدالة ترجع  رسالة في حالة ان المستخدم ادخل 
+            رقم شهر غير صحيح مثلا 
+            13
+            هكذا: 
+        </p>
+        <pre><code>
+def days_in_month(year, month):
+    if month > 12 or month < 1:
+        print("Invalid month.")
+    month_days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]  
+    if is_leap(year) and month == 2:
+        return 29
+    return month_days[month - 1]
+        </code></pre>
+        <p>
+            الكود كاملا: 
+        </p>
+        <pre><code>
+def is_leap(year):
+    if year % 4 == 0:
+        if year % 100 == 0:
+            if year % 400 == 0:
+                return True
+            else:
+                return False
+        else:
+            return True
+    else:
+        return False
+
+
+def days_in_month(year, month):
+    if month > 12 or month < 1:
+        print("Invalid month.")
+    month_days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]  
+    if is_leap(year) and month == 2:
+        return 29
+    return month_days[month - 1]
+
+
+year = int(input("Enter a year: "))
+month = int(input("Enter a month: "))
+days = days_in_month(year, month)
+print(days)
+        </code></pre>
+        <p>
+            وفي الدرس السابق سوف نجيب على سؤال لماذا نستعمل 
+            return 
+            من الاساس؟ لما لا نستعمل 
+            print 
+            ؟
+        </p>
+    </div>
+
+</body>
+
+</html>
