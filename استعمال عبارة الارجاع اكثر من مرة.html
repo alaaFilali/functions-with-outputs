@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>استعمال عبارة الارجاع اكثر من مرة</title>
+</head>
+
+<body>
+    <div class="book-page">
+        <h1 class="book-title">استعمال عبارة الارجاع اكثر من مرة</h1>
+        <div class="content">
+            <p>
+                في الدرس السابق رأينا الدوال التي ترجع قيم بحيث قمنا بكتابة دالة
+                format_name
+                تقوم بارجاع
+                string
+            </p>
+            <pre><code>
+def format_name(f_name, l_name):
+    formated_f_name = f_name.title()
+    formated_l_name = l_name.title()
+    return f"{formated_f_name} {formated_l_name}"
+    
+print(format_name("aLAA", "alAa"))
+            </code></pre>
+            <p>
+                في هذا الدرس سوف نرى ماذا سوف يحدث عندما يكون للدالة اكثر
+                من عبارة ارجاع
+                return
+                لان تنفيذ هذه الاخيرة يعني نهاية الدالة وكل سطر تحتها لن يتم تنفيذه
+            </p>
+            <pre><code>
+def format_name(f_name, l_name):
+    formated_f_name = f_name.title()
+    formated_l_name = l_name.title()
+    return f"{formated_f_name} {formated_l_name}"
+    # كل سطر بعد هذا السطر لن يتم تنفيذه
+    print("This won't be excuted")
+    
+print(format_name("aLAA", "alAa"))
+            </code></pre>
+            <p>
+                يمكن للدالة ان تكون لديها اكثر من عبارة ارجاع ويمكن ايضا ان
+                تكون لديها عبارة ارجاع فارغة
+                مثلا نريد ان نتحقق ان كان
+                f_name
+                أو
+                l_name
+                فارغين اذن نستعمل عبارة ارجاع فارغة
+            </p>
+            <pre><code>
+def format_name(f_name, l_name):
+    if f_name == "" or l_name == "":
+        return
+    formated_f_name = f_name.title()
+    formated_l_name = l_name.title()
+    return f"{formated_f_name} {formated_l_name}"
+    
+print(format_name("aLAA", "alAa"))
+                            </code></pre>
+            <p>
+                فرضا سألنا المستخدم عن اسمه الاول والثاني ولم يدخل شيئا وقمنا بتمريرهما كمدخلات للدالة اذن
+                f_name
+                و
+                l_name
+                فارغين
+                في تلك الحالة لا نريد للدالة الخاصة بنا ان تكمل تنفيذ كل الاسطر لانها بدون فائدة
+                بل نريد تخطي تنفيذ تلك الاسطر باستعمال عبارة ارجاع
+                return
+                فارغة وهكذا سوف نضمن ان تلك الاسطر لن تنفذ الا اذا تم تمرير اسماء وليس فراغ
+            </p>
+            <p>
+                ببساطة سوف ننهي الدالة مبكرا بهذه الطريقة
+            </p>
+            <p>
+                ولكن من الافضل الا نرجع فراغ بل نرجع رسالة تخبر المستخدم او المبرمج
+                لما تم انهاء الدالة مبكرا ك
+                "لم تدخل مدخلات صحيحة او ادخلت مدخلات فارغة اعد المحاولة"
+            </p>
+            <pre><code>
+def format_name(f_name, l_name):
+    if f_name == "" or l_name == "":
+        return "You didn't provide valid inputs."
+    formated_f_name = f_name.title()
+    formated_l_name = l_name.title()
+    return f"{formated_f_name} {formated_l_name}"
+    
+print(format_name("aLAA", "alAa"))
+                                            </code></pre>
+            <p>
+                وفي الدرس القادم سوف لديك تمرين لتقوم باستخدام ماتعلمته اليوم.
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>
