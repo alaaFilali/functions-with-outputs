@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>المستندات</title>
+</head>
+
+<body>
+    <div class="book-page">
+        <h1 class="book-title">المستندات</h1>
+        <div class="content">
+            <p>
+                في هذا الدرس سوف نتعلم حول المستندات في بايثون او 
+                docstrings
+                وهي طريقة لاضافة شرح او طريقة عمل للدوال الخاصة بنا بحيث لو تضع 
+                الفأرة فوق اسم الدالة سوف تظهر 
+            </p>
+            <p>
+                اظن انك قد لاحظتها من قبل بحيث عندما تبدأ في كتابة اسم الدالة التي تريد 
+                استخدامها تظهر نافذة صغيرة بها القليل من الكتابة تشرح تلك الدالة 
+                وماذا ترجع وهل تأخذ مدخلات او لا
+            </p>
+            <p>
+                لدينا هذه الدالة من الدروس السابقة 
+            </p>
+            <pre><code>
+def format_name(f_name, l_name):
+    if f_name == "" or l_name == "":
+        return "You didn't provide valid inputs."
+    formated_f_name = f_name.title()
+    formated_l_name = l_name.title()
+    return f"{formated_f_name} {formated_l_name}"
+    
+print(format_name("aLAA", "alAa"))
+            </code></pre>
+            <p>
+                لنضيف لها 
+                docstring 
+                خاص بها كالتالي:
+            </p>
+            <pre><code>
+def format_name(f_name, l_name):
+    """Take a first and last name and format it to return the title case version of the name."""
+    if f_name == "" or l_name == "":
+        return "You didn't provide valid inputs."
+    formated_f_name = f_name.title()
+    formated_l_name = l_name.title()
+    return f"{formated_f_name} {formated_l_name}"
+    
+print(format_name("aLAA", "alAa"))
+            </code></pre>
+            <p>
+                بحيث تبدأ من اول سطر بعد اسم الدالة ويجب ان تكون محاطة بثلاث 
+                quotes
+                هكذا
+                """ """
+            </p>
+            <p>
+                هذه الاخيرة مفيدة ايضا في صناعة 
+                string 
+                فيها اسطر عديدة وليس سطر واحد
+            </p>
+            <p>
+                فلو اردت صناعة متغير  
+                يحمل قيمة 
+                string
+                 فيها اكثر من سطر باستخدام 
+                ""
+                واحدة فقط سوف تحصل على 
+                error
+            </p>
+            <p>
+                الان لو تقوم بمنادات الدالة وفتح الاقواس سوف تظهر نافذة صغيرة فيها ما قمت 
+                بكتابته في ال 
+                docstring
+            </p>
+            <p>
+                يمكنك ايضا ان تستعمل هذه الطريقة لتضيف تعليق فيه اكثر من سطر
+                وسوف يعتبر تعليق مادام انه لم يخزن في متغير او شيء اخر
+            </p>
+            <p>
+                ولكن هذا لاينصح به بل استعمل 
+                #
+                لتقوم بكتابة التعليقات فهي افضل طريقة لتقوم بالتفريق بين 
+                code 
+                والتعليق
+            </p>
+            <p>
+                الان بعد ما درست حول ال 
+                docstring
+                قم باضافتها الى الدوال التي تكتبها من الان فصاعدا.
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>
