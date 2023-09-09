@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>
+حلقات 
+while,
+الأعلام والتراجع
+    </title>
+</head>
+
+<body>
+    <div class="book-page">
+        <h1 class="book-title">
+حلقات 
+while,
+الأعلام والتراجع
+        </h1>
+        <div class="content">
+            <p>
+                في الدرس السابق استطعنا اعادة استعمال نتيجة الحساب الاول في الحساب الثاني
+                مخرج الحساب الاول اصبح مدخل الحساب الثاني مما ادى الى ربط الحسابات مع بعض
+            </p>
+            <p>
+                ولكن هذا ادى الى ظهور التكرار في الكود الخاص بنا و ايضا 
+                هو يحد المستخدم الخاص بنا بالقيام فقط بحسابين متتاليين
+            </p>
+            <p>
+                نريد من المستخدم ان يستطيع اكمال الحساب من النتيجة السابقة عدد 
+                المرات التي يريد وليس مرتين فقط 
+            </p>
+            <p>
+                يمكننا تحقيق ذلك باستخدام حلقة 
+                while 
+                بحيث نسأل المستخدم في نهاية كل حساب ان يختار ان يكمل بان 
+                يختار 
+                y 
+                او 
+                n
+                لكي ينهي البرنامج
+            </p>
+            <pre><code>
+What's the first number?: 5
++
+-
+*
+/
+Pick an operation: *
+What's the next number?: 2
+5 * 2 = 10
+Type 'y' to continue calculating with 10, or type 'n' to start a new calculation: y
+Pick an operation: -
+What's the next number?: 4
+10 - 4 = 6
+Type 'y' to continue calculating with 6, or type 'n' to start a new calculation: n
+            </code></pre>
+            <p>
+                بعد ان يختار المستخدم الرقم الاول واضهرنا له جميع العمليات سوف نظيف
+                حلقة ال
+                while 
+                الخاصة بنا 
+                وسوف نضيف ايضا علم 
+                flage
+                وهو مجرد متغير يحمل قيمة 
+                True
+                يسمى 
+                should_continue
+                وهو الذي سيكون شرط الحلقة 
+                وكل ما هو تحت طباعة النتيجة الان هو عبارة عن تكرار
+                <br>
+                (لاحظ ايضا انني قمت بتغيير بعض الرسائل واسماء المتغيرات ايضا لكي تناسب التعديل الجديد)
+            </p>
+            <pre><code>
+should_continue = True
+while should_continue:
+    operation_symbol = input("Pick an operation: ")
+    num2 = int(input("What's the next number?: "))
+    calculation_function = operations[operation_symbol]
+    answer = calculation_function(num1, num2)
+
+    print(f"{num1} {operation_symbol} {num2} = {answer}")
+            </code></pre>
+            <p>
+                ثم سوف اسأله ان كان يريد الاكمال من النتيجة الحالية او انهاء البرنامج 
+                بان يكتب 
+                y 
+                او 
+                n 
+                واتحقق في نفس الوقت لان لو تتذكر ال 
+                input 
+                ترجع ما يدخله المستخدم,
+                فاذا اختار 
+                y 
+                سوف نجعل قيمة 
+                num1 
+                هي 
+                result 
+                واذا اختار 
+                n 
+                سوف نقوم بقلب قيمة العلم وسوف ننهي الحلقة والبرنامج
+            </p>
+            <pre><code>
+should_continue = True
+while should_continue:
+    operation_symbol = input("Pick an operation: ")
+    num2 = int(input("What's the next number?: "))
+    calculation_function = operations[operation_symbol]
+    answer = calculation_function(num1, num2)
+
+    print(f"{num1} {operation_symbol} {num2} = {answer}")
+    if input("Type 'y' to continue calculating with 6, or type 'n' to exit.: ") == "y":
+        num1 = answer
+    else:
+        should_continue = False
+            </code></pre>
+            <p>
+                الان المستخدم يمكنه استعمال النتيجة السابقة من العملية الحسابية واكمال الحساب عدد 
+                المرات التي يريد وعندما يريد الخروج عليه ان يختار 
+                n 
+                ولكن ماذا لو اردنا ان يبدأ حساب جديد عندما يختار 
+                n 
+                وليس الخروج من البرنامج 
+                هل هناك طريقة لفعل ذلك؟ لان لو تفكر فيها قليلا اختيار الرقم الاول خارج الحلقة 
+            </p>
+            <p>
+                لتحقيق ذلك علينا ان نستعمل مفهوم التراجع 
+                recursion 
+                وهو ببساطة دالة تقوم بمنادات نفسها
+            </p>
+            <p>
+                سوف نقوم بتعريف دالة تسمى 
+                calculator
+                فيها كل الكود السابق من بداية السؤال عن العدد الاول
+                ونقوم بمناداتها حتى يعمل البرنامج مثل السابق
+            </p>
+            <p>
+                والان عندما يختار المستخدم 
+                n 
+                سوف نقوم بمنادات الدالة 
+                calculator 
+                اي اننا قمنا بمنادات الدالة داخل نفسها اي انها سوف تبدأ من جديد
+                وتعيد كل القيم الى الحالة الابتدائية
+            </p>
+            <pre><code>
+def calculator():
+    num1 = int(input("What's the first number?: "))
+    for symbol in operations:
+        print(symbol)
+
+    should_continue = True
+    while should_continue:
+        operation_symbol = input("Pick an operation: ")
+        num2 = int(input("What's the next number?: "))
+        calculation_function = operations[operation_symbol]
+        answer = calculation_function(num1, num2)
+
+        print(f"{num1} {operation_symbol} {num2} = {answer}")
+        if input("Type 'y' to continue calculating with 6, or type 'n' to start a new calculation: ") == "y":
+            num1 = answer
+        else:
+            calculator()
+
+
+calculator()
+            </code></pre>
+            <p>
+                ولكن عند استعمال حلقة 
+                while 
+                او التراجع كن دائما حذر من ان تقع في حلقة لانهائية لان الدالة تبقى تنادي
+                على نفسها بدون شروط سوف تأدي الى حلقة نهائية وهو مالاتريد حدوثه.
+            </p>
+            <p>
+                الكود كاملا من درس اليوم: 
+            </p>
+            <pre><code>
+def add(n1, n2):
+    return n1 + n2
+
+
+def subtract(n1, n2):
+    return n1 - n2
+
+
+def multiply(n1, n2):
+    return n1 * n2
+
+
+def divide(n1, n2):
+    return n1 / n2
+
+
+operations = {
+    "+": add,
+    "-": subtract,
+    "*": multiply,
+    "/": divide,
+}
+
+
+def calculator():
+    num1 = int(input("What's the first number?: "))
+    for symbol in operations:
+        print(symbol)
+
+    should_continue = True
+    while should_continue:
+        operation_symbol = input("Pick an operation: ")
+        num2 = int(input("What's the next number?: "))
+        calculation_function = operations[operation_symbol]
+        answer = calculation_function(num1, num2)
+
+        print(f"{num1} {operation_symbol} {num2} = {answer}")
+        if input("Type 'y' to continue calculating with 6, or type 'n' to start a new calculation: ") == "y":
+            num1 = answer
+        else:
+            calculator()
+
+
+calculator()
+            </code></pre>
+        </div>
+    </div>
+</body>
+
+</html>
