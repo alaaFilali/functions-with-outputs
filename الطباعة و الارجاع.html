@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>الطباعة و الارجاع</title>
+</head>
+
+<body>
+    <div class="book-page">
+        <h1 class="book-title">الطباعة و الارجاع</h1>
+        <div class="content">
+            <p>
+                حتى الان الالة الحاسبة التي بنيناها تعمل وفي درس اليوم سوف 
+                نعرف الفرق بين طباعة شيء ما في ال 
+                console
+                وارجاع قيمة من دالة كمخرج
+            </p>
+            <p>
+                مثلا في دالة الجمع لماذا علي ان ارجع قيمة الجمع لما لا اقوم 
+                بطباعتها وفقط؟ وهذا ما سوف نجيب عليه في درس اليوم 
+            </p>
+            <p>
+                هذا هو الكود الذي كتبناه في الدرس السابق: 
+            </p>
+            <pre><code>
+def add(n1, n2):
+    return n1 + n2
+
+
+def subtract(n1, n2):
+    return n1 - n2
+
+
+def multiply(n1, n2):
+    return n1 * n2
+
+
+def divide(n1, n2):
+    return n1 / n2
+
+
+operations = {
+    "+": add,
+    "-": subtract,
+    "*": multiply,
+    "/": divide,
+}
+
+num1 = int(input("What's the first number?: "))
+
+for symbol in operations:
+    print(symbol)
+operation_symbol = input("Pick an operation from the line above: ")
+
+num2 = int(input("What's the second number?: "))
+
+calculation_function = operations[operation_symbol]
+answer = calculation_function(num1, num2)
+print(f"{num1} {operation_symbol} {num2} = {answer}")
+            </code></pre>
+            <p>
+                في حالته الان لا يمكنك ملاحظة الفرق بين استعمال 
+                print
+                او 
+                return 
+            </p>
+            <p>
+                اليك السيناريو التالي: ماذا لو سألت المستخدم ان يختار عملية اخرى
+                و رقم ثالث اخر لكي يكمل العملية من النتيجة السابقة ثم تمرر العدد الثالث مع القيمة السابقة للدالة 
+                calculation_function
+                والتي هي 
+                first_answer 
+                والعدد الثالث وهو 
+                num3
+                هكذا: 
+            </p>
+            <pre><code>
+operation_symbol = input("Pick another operation: ")
+num3 = int(input("What is the next number?: "))
+calculation_function = operations[operation_symbol]
+second_answer = calculation_function(first_answer, num3)
+            </code></pre>
+            <p>
+                لاحظ هنا انني سوف اغير اسم المتغير 
+                answer 
+                في المرة الاولى اسميه 
+                first_answer
+                وفي المرة الثانية
+                second_answer
+                حتى لا يختلط الاثنين
+                ثم اقوم بطباعة النتيجة
+            </p>
+            <pre><code>
+print(f"{first_answer} {operation_symbol} {num3} = {second_answer}")
+            </code></pre>
+            <p>
+                والنتيجة: 
+            </p>
+            <pre><code>
+What's the first number?: 5
++
+-
+*
+/
+Pick an operation from the line above: *
+What's the next number?: 2
+5 * 2 = 10
+Pick another operation: *
+What is the next number?: 3
+10 * 3 = 30
+            </code></pre>
+            <p>
+                 استطعت ان اخذ مخرج دالة وامرره لدالة اخرى واستعمله واستطعت فعل ذلك
+                 فقط لان الدالة ترجع تلك القيمة وليس طباعتها فقط فلو قمت بطباعة النتيجة 
+                 كيف ساستعمل تلك النتيجة وامررها في دالة اخرى 
+            </p>
+            <p>
+                الطباعة هي مجرد رسالة تراها في الشاشة 
+                console
+                ولا يمكنك استخدامها داخل البرنامج الخاص بك بينما عندما ترجع القيمة ك مخرج للدالة 
+                يمكنك تخزينها في متغير وتمريرها للدوال وفعل مختلف 
+                الاشياء مع تلك القيمة.
+            </p>
+            <p>
+                هذا الكود كاملا لدرس اليوم حتى لا تختلط الامور لاني قمت بتغيير بعض اسماء المتغيرات, وفي الدرس
+                القادم سوف نضيف حلقة 
+                while 
+                للالة الحاسبة الخاصة بنا حتى تعمل بدون توقف
+            </p>
+            <pre><code>
+def add(n1, n2):
+    return n1 + n2
+
+
+def subtract(n1, n2):
+    return n1 - n2
+
+
+def multiply(n1, n2):
+    return n1 * n2
+
+
+def divide(n1, n2):
+    return n1 / n2
+
+
+operations = {
+    "+": add,
+    "-": subtract,
+    "*": multiply,
+    "/": divide,
+}
+
+num1 = int(input("What's the first number?: "))
+
+for symbol in operations:
+    print(symbol)
+operation_symbol = input("Pick an operation from the line above: ")
+
+num2 = int(input("What's the second number?: "))
+
+calculation_function = operations[operation_symbol]
+first_answer = calculation_function(num1, num2)
+print(f"{num1} {operation_symbol} {num2} = {first_answer}")
+
+operation_symbol = input("Pick another operation: ")
+num3 = int(input("What is the next number?: "))
+calculation_function = operations[operation_symbol]
+second_answer = calculation_function(first_answer, num3)
+
+print(f"{first_answer} {operation_symbol} {num3} = {second_answer}")
+            </code></pre>
+        </div>
+    </div>
+</body>
+
+</html>
