@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>الالة الحاسبة - اللمسات الاخيرة واصلاح الاخطاء</title>
+</head>
+
+<body>
+    <div class="book-page">
+        <h1 class="book-title">الالة الحاسبة - اللمسات الاخيرة واصلاح الاخطاء</h1>
+        <div class="content">
+            <p>
+                الان بعد ما اكملنا تقريبا البرنامج الخاص بنا لهذه الحصة تبقي ان 
+                نضيف بعض اللمسات الاخيرة كاضافة لوغو البرنامج واصلاح بعض الاخطاء
+            </p>
+            <p>
+                اضافة اللوغو عملية سهلة وقد قمنا بها العديد من المرات في الدروس السابقة
+                بحيث لدينا رسمة مخزنة ك 
+                string 
+                في متغير في ملف اخر يسمى 
+                art.py
+                فقط نقوم بعمل 
+                import 
+                له ونطبعه في بداية الدالة 
+                calculator
+            </p>
+            <pre><code>
+from art import logo
+...
+...
+...
+def calculator():
+    print(logo)
+    ...
+    ...
+
+...
+            </code></pre>
+            <p>
+                هناك 
+                bug 
+                واظن انك قد لاحظته من قبل وهو ماذا لو اردنا اجراء عملية حسابة 
+                باعداد بالفاصلة
+            </p>
+            <p>
+                سوف نحصل على خطأ وهو ماسنقوم باصلاحه ولنقوم بذلك علينا ان نعرف مصدر الخطأ
+                فلو تعود للكود الذي كتبناه ترى اننا عندما نسأل عن عدد نقوم بتحويله الى 
+                int 
+                بواسطة ال 
+                int function
+                ولكن رقم بفاصلة لا يجب ان يحول الى 
+                int 
+                بل الى 
+                float
+                اذن الحل سوف نستعمل الدالة 
+                float 
+                بدل 
+                int
+            </p>
+            <pre><code>
+def calculator():
+    num1 = float(input("What's the first number?: "))
+    ...
+
+    should_continue = True
+    while should_continue:
+        operation_symbol = input("Pick an operation: ")
+        num2 = float(input("What's the next number?: "))
+        ...
+
+
+calculator()
+            </code></pre>
+            <p>
+                يمكنك اضافة عملية الجذر او القوة ايضا اذا اردت ذلك
+            </p>
+            <p>
+                الكود كاملا: 
+            </p>
+            <pre><code>
+from art import logo
+
+
+def add(n1, n2):
+    return n1 + n2
+
+
+def subtract(n1, n2):
+    return n1 - n2
+
+
+def multiply(n1, n2):
+    return n1 * n2
+
+
+def divide(n1, n2):
+    return n1 / n2
+
+
+operations = {
+    "+": add,
+    "-": subtract,
+    "*": multiply,
+    "/": divide,
+}
+
+
+def calculator():
+    print(logo)
+
+    num1 = float(input("What's the first number?: "))
+    for symbol in operations:
+        print(symbol)
+
+    should_continue = True
+    while should_continue:
+        operation_symbol = input("Pick an operation: ")
+        num2 = float(input("What's the next number?: "))
+        calculation_function = operations[operation_symbol]
+        answer = calculation_function(num1, num2)
+
+        print(f"{num1} {operation_symbol} {num2} = {answer}")
+        if input(f"Type 'y' to continue calculating with {answer}, or type 'n' to start a new calculation: ") == "y":
+            num1 = answer
+        else:
+            calculator()
+
+
+calculator()
+            </code></pre>
+        </div>
+    </div>
+</body>
+
+</html>
